@@ -68,6 +68,7 @@
     <Content Include="another_page.html" />
     <Content Include="contact.html" />
     <Content Include="examples.html" />
+    <Content Include="index-personal-sign.html" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
