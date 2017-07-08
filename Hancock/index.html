@@ -1,0 +1,125 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>textured_stars_light</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" title="style" />
+</head>
+
+<body>
+    <script defer="defer" async="async">
+        function toHex(s) {
+            // utf8 to latin1
+            var s = unescape(encodeURIComponent(s));
+            var h = '';
+            for (var i = 0; i < s.length; i++) {
+                h += s.charCodeAt(i).toString(16);
+            }
+            return h
+        }
+        function signString(from, text) {
+            var msg = '0x' + toHex(text);
+            var params = [msg, from];
+            var method = 'personal_sign';
+            console.log('message = ' + msg);
+
+            web3.currentProvider.sendAsync({
+                method,
+                params,
+                from,
+            }, function (error, result) {
+                if (error) console.log(error);
+                document.getElementById('signature').value = JSON.stringify(result.result);
+            });
+        }
+        var message = '0x41424344';
+        function timeout(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        async function delay(fn, ...args) {
+            await timeout(3000);
+            return fn(...args);
+        }
+        delay(function () {
+            var account = web3.eth.accounts[0];
+            document.getElementById('addressInput').value = account;
+            if (account == undefined) { document.getElementById('failmessage').hidden = false; }
+        });
+
+
+
+        console.log('loaded scripts');
+    </script>
+    <div id="main">
+        <div id="header">
+            <div id="logo">
+                <div id="logo_text">
+                    <!-- class="logo_colour", allows you to change the colour of the text -->
+                    <h1><a href="index.html">textured<span class="logo_colour">_stars_light</span></a></h1>
+                    <h2>Simple. Contemporary. Website Template.</h2>
+                </div>
+            </div>
+            <div id="menubar">
+                <ul id="menu">
+                    <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+                    <li class="selected"><a href="index.html">Home</a></li>
+                    <li><a href="examples.html">Examples</a></li>
+                    <li><a href="page.html">A Page</a></li>
+                    <li><a href="another_page.html">Another Page</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="site_content">
+            <div class="sidebar">
+                <!-- insert your sidebar items here -->
+                <h3>Latest News</h3>
+                <h4>New Website Launched</h4>
+                <h5>January 1st, 2014</h5>
+                <p>2014 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
+                <p></p>
+                <h4>New Website Launched</h4>
+                <h5>January 1st, 2014</h5>
+                <p>2014 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
+                <h3>Useful Links</h3>
+                <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                </ul>
+                <h3>Search</h3>
+                <form method="post" action="#" id="search_form">
+                    <p>
+                        <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                        <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+                    </p>
+                </form>
+            </div>
+            <div id="content">
+                <!-- insert the page content here -->
+                <h1>Sign a message</h1>
+                <p id="failmessage" hidden="true">Could not connect to your account. Please install <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en">MetaMask</a> and enter your password</p>
+                Address <br />
+                <input id="addressInput" type="text" name="address" value="" size="40"><br />
+                Message:<br />
+                <textarea id="message" rows="12" cols="80"></textarea>
+
+                <p>
+                    <button type="button" onclick="signString(document.getElementById('addressInput').value, document.getElementById('message').value);">Sign</button>
+                </p>
+                <div id="output">
+                    Signature:<br />
+                    <textarea id="signature" rows="12" cols="80" readonly="readonly"></textarea>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            Copyright &copy; textured_stars_light | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">design from HTML5webtemplates.co.uk</a>
+        </div>
+    </div>
+</body>
+</html>
