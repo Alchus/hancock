@@ -77,9 +77,9 @@
               <tr>
                   <td class="auto-style1">
                       <label>Target Block Number</label><br />
-                      <input id="txtTargetBlock" type="text" /><br />
-                      <input id="btnEtherchain" type="button" value="Etherchain +5" onclick="getEtherchainLatestBlock();"/>
-                      <input id="btnWeb3" type="button" value="Web3 +5"onclick="getWeb3LatestBlock();" /></td>
+                      <input id="txtTargetBlock" class="step1" type="text" pattern="^[0-9]+$" title="Numeric digits only" /><br />
+                      <input id="btnEtherchain" class="step1" type="button" value="Etherchain +5" onclick="getEtherchainLatestBlock();"/>
+                      <input id="btnWeb3" class="step1" type="button" value="Web3 +5" onclick="getWeb3LatestBlock();" /></td>
                   
                   <td class="auto-style1">
                       Target Block</td>
@@ -87,9 +87,9 @@
               
               <tr>
                   <td class="auto-style1">
-                      <label>Secret Key</label><br />
-                      <input id="txtSecretKey" type="text" pattern="^[0-9a-fA-F]*$" title="Hexadecimal digits only" maxlength="64" />
-                      <input id="btnAutoGenKey" type="button" value="Generate a random key" onclick="setRandomKey();"/>
+                      View<label> Key</label><br />
+                      <input id="txtSecretKey" class="step1" type="text" pattern="^[0-9a-fA-F]+$" title="Hexadecimal digits only" maxlength="64" />
+                      <input id="btnAutoGenKey" class="step1" type="button" value="Generate a random key" onclick="setRandomKey();"/>
                       <input id="btnCopySecret" type="button" value="Copy to clipboard"  onclick="copyElementText($('#txtSecretKey'));"/></td>
                   
                   <td class="auto-style1">
@@ -105,7 +105,7 @@
                   <td class="auto-style1">
                       Commitment</td>
               </tr>             
-              <tr>
+              <tr hidden="hidden">
                   <td class="auto-style1">
                       <label>Signature (optional)</label><br />
                       <input id="txtSignature" type="text" /><br />
@@ -113,7 +113,7 @@
                       <input id="btnCopySignature" type="button" value="Copy to clipboard" onclick="copyElementText($('#txtSignature'));"/></td>
                   
                   <td class="auto-style1">
-                      Commitment</td>
+                      signature</td>
               </tr>
               <tr>
                   <td class="auto-style1">

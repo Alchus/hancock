@@ -54,3 +54,18 @@ function copyElementText(element) {
     element.select();
     document.execCommand('copy');
 }
+
+function generateCommitment() {
+    var block = $('#txtTargetBlock').val();
+    var key = $('#txtSecretKey').val();
+    var commit = web3.sha3(block + "" + key);
+    $('#txtCommitment').val(commit);
+}
+
+$(document).ready(function () {
+    console.log("ready!");
+    $('.step1').on('input', function () {
+        //console.log($(this).attr('id'));
+        generateCommitment();
+    });
+});
