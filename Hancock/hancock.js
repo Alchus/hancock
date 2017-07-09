@@ -27,17 +27,14 @@ function getEtherchainLatestBlock() {
         });
 }
 
-function cb(error, result) {
-    if (error) {
-        
-        console.log(error);
-        setTargetBlock('');
-        $('#web3fail').show();
-    } else {
-        setTargetBlock(result + 5);
-        $('#web3fail').hide();
+function setRandomKey() {
+    var data = "";
+    var hexAlphabet = "0123456789abcdef"
+    for (i = 0; i < 64; i++) {
+        data = data + "" + hexAlphabet.charAt(Math.random() * 16);
     }
-    
+    console.log(data);
+    $('#txtSecretKey').val(data);
 }
 
 function getWeb3LatestBlock() {
@@ -51,5 +48,9 @@ function getWeb3LatestBlock() {
             $('#web3fail').hide();
         }
     });
-    
+}
+
+function copyElementText(element) {
+    element.select();
+    document.execCommand('copy');
 }
